@@ -4,6 +4,10 @@ const   child       = require('child_process'),
         browserSync = require('browser-sync').create(),
         gulp        = require('gulp'),
         gutil       = require('gulp-util'),
+        
+        sass 		 = require('gulp-sass'),
+		autoprefixer = require('gulp-autoprefixer'),
+		rename 		 = require('gulp-rename'),
 
         siteRoot    = '_site';
 
@@ -40,6 +44,18 @@ gulp.task('serve', () => {
       baseDir: siteRoot
     }
   });
+
+});
+
+// TASK SASS
+
+gulp.task('sass', () => {
+
+	gulp.src(siteRoot + '/assets/css/main.css')
+	.pipe(rename({suffix: '.min'}))
+	.pipe(autoprefixer('last 15 versions', '> 1%'))
+	.pipe(sass({outputStyle: 'compressed'}))
+	.pipe(gulp.dest(siteRoot + '/assets/css/'));
 
 });
 
