@@ -1,20 +1,22 @@
 
 
-const child					= require('child_process'),
-			browserSync		= require('browser-sync').create(),
-			gulp					= require('gulp'),
-			gutil					= require('gulp-util'),
+const   child       = require('child_process'),
+        browserSync = require('browser-sync').create(),
+        gulp        = require('gulp'),
+        gutil       = require('gulp-util'),
 
-			siteRoot			= '_site';
+        siteRoot    = '_site';
 
 // TASK JEKYLL
 
 gulp.task('jekyll', () => {
+
 	const jekyll = child.spawn('jekyll', ['build',
 		'--watch',
-    '--incremental',
-    '--drafts'
-  ]);
+		'--incremental',
+		'--config',
+    '_config.yml,_config-dev.yml'
+   ]);
 
   const jekyllLogger = (buffer) => {
     buffer.toString()
@@ -24,11 +26,13 @@ gulp.task('jekyll', () => {
 
   jekyll.stdout.on('data', jekyllLogger);
   jekyll.stderr.on('data', jekyllLogger);
+
 });
 
 // TASK SERVE
 
 gulp.task('serve', () => {
+
   browserSync.init({
     files: [siteRoot + '/**'],
     port: 4000,
@@ -36,8 +40,6 @@ gulp.task('serve', () => {
       baseDir: siteRoot
     }
   });
-
-  gulp.watch('_site/**/*.html', browserSync.reload());
 
 });
 
