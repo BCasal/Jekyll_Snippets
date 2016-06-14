@@ -1,5 +1,5 @@
 {
-  "name": "jekyll gulp",
+  "name": "jekyll_gulp",
   "version": "0.0.1",
   "description": "Jekyll Scaffold + Gulp",
   "main": "gulpfile.js",
