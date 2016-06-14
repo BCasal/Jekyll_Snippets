@@ -34,16 +34,16 @@ gulp.task('jekyll', () => {
 	// baseurl & url (definido)
 	// añadir _config-dev.yml con baseurl & url (vacio)
 
-	/*
 
-	const jekyll = child.spawn('jekyll', ['build',
+	/*
+  const jekyll = child.spawn('jekyll', ['build',
 		'--watch',
 		'--incremental',
 		'--config',
 		'_config.yml,_config-dev.yml'
 	]);
+  */
 
-	*/
 
   const jekyllLogger = (buffer) => {
     buffer.toString()
